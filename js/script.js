@@ -18,11 +18,11 @@ Create the `showPage` function
 This function will create and insert/append the elements needed to display a "page" of nine students
 */
 function showPage(list, page) {
-   const startIndex = page * 9 - 9;
+   const startIndex = page * 9 - 9; // how many list items will be displayed
    const endIndex = page * 9;
 
    const studentList = document.querySelector('.student-list');
-   studentList.innerHTML = '';
+   studentList.innerHTML = ''; // clears any items that may have shown
 
    //Looping through a template literal that will get inserted into the student list
    for (let i = 0; i < list.length; i++) {
@@ -50,7 +50,37 @@ Create the `addPagination` function
 This function will create and insert/append the elements needed for the pagination buttons
 */
 
+// A function that will calculate the number of page buttons needed
+function addPagination(list) {
+   const numOfPages = Math.ceil(list.length/ 9);
+   const linkList = document.querySelector('.link-list');
+
+   linkList.innerHTML = '';
+
+   for (let i = 1; i <= numOfPages; i+= 1) {
+      linkList.insertAdjacentHTML ("beforeend",
+      `
+         <li>
+            <button type="button">${[i]}</button>
+         </li>
+      `);
+      linkList.firstElementChild.firstElementChild.classList.add('active');
+
+      // adding event listener for the pagination buttons
+      linkList.addEventListener('click', (event) => {
+         let clicked = event.target; 
+         if (clicked.tagName == 'BUTTON') {
+            let active = document.querySelector('.active');
+            active.className = ''; // sets the class as empty
+            clicked.className = 'active'; // the clicked target now has the active class
+            showPage(list, clicked.textContent);
+         }
+      })
+   }
+}
+
 
 
 // Call functions
 showPage(data, 1);
+addPagination(data);
