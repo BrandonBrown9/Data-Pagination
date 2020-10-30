@@ -21,13 +21,10 @@ function showPage(list, page) {
    const startIndex = page * 9 - 9;
    const endIndex = page * 9;
 
-   console.log(list);
-   console.log(page);
-   console.log(data[0]);
-
    const studentList = document.querySelector('.student-list');
    studentList.innerHTML = '';
 
+   //Looping through a template literal that will get inserted into the student list
    for (let i = 0; i < list.length; i++) {
       if (i >= startIndex && i < endIndex) {
          let showStudents = `
