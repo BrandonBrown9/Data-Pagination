@@ -11,6 +11,9 @@ For assistance:
    Reach out in your Slack community: https://treehouse-fsjs-102.slack.com/app_redirect?channel=unit-2
 */
 
+//Global Variables
+const studentList = document.querySelector('.student-list');
+const linkList = document.querySelector('.link-list');
 
 
 /*
@@ -21,7 +24,6 @@ function showPage(list, page) {
    const startIndex = page * 9 - 9; // how many list items will be displayed
    const endIndex = page * 9;
 
-   const studentList = document.querySelector('.student-list');
    studentList.innerHTML = ''; // clears any items that may have shown
 
    //Looping through a template literal that will get inserted into the student list
@@ -53,7 +55,6 @@ This function will create and insert/append the elements needed for the paginati
 // A function that will calculate the number of page buttons needed
 function addPagination(list) {
    const numOfPages = Math.ceil(list.length/ 9);
-   const linkList = document.querySelector('.link-list');
 
    linkList.innerHTML = '';
 
